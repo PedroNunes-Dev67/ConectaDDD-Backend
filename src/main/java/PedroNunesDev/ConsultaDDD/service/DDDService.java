@@ -39,7 +39,7 @@ public class DDDService {
 
     public ResponseEntity<RequestUsuario> cadastrarRequest(DtoRequest dtoRequest){
 
-        Usuario usuario = usuarioRepository.findByEmail(dtoRequest.getEmail());
+        Usuario usuario = usuarioRepository.findByEmail(dtoRequest.getEmail()).orElse(null);
 
         if (usuario == null){
             usuario = new Usuario(dtoRequest.getEmail());
