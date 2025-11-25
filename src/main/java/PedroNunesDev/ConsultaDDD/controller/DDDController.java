@@ -4,6 +4,7 @@ import PedroNunesDev.ConsultaDDD.dtos.DtoRequest;
 import PedroNunesDev.ConsultaDDD.model.RequestUsuario;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,7 @@ public class DDDController {
     @PostMapping("/request")
     public ResponseEntity<RequestUsuario> cadastrarRequest(@RequestBody @Valid DtoRequest dtoRequest){
 
-        return dddService.cadastrarRequest(dtoRequest);
+        RequestUsuario requestUsuario = dddService.cadastrarRequest(dtoRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(requestUsuario);
     }
 }

@@ -37,7 +37,7 @@ public class DDDService {
         }
     }
 
-    public ResponseEntity<RequestUsuario> cadastrarRequest(DtoRequest dtoRequest){
+    public RequestUsuario cadastrarRequest(DtoRequest dtoRequest){
 
         Usuario usuario = usuarioRepository.findByEmail(dtoRequest.getEmail()).orElse(null);
 
@@ -50,8 +50,6 @@ public class DDDService {
         requestUsuario.setRequest(dtoRequest.getRequest());
         requestUsuario.setUsuario(usuario);
 
-        requestRepository.save(requestUsuario);
-
-        return ResponseEntity.ok(requestUsuario);
+        return requestRepository.save(requestUsuario);
     }
 }
